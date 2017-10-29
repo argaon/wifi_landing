@@ -1,0 +1,23 @@
+최초의 httpd request 발생을 건드리면 안된다.
+그거 말고 실제 브라우저 사용을 탐지해서 패킷을 보내야한다.
+
+wlan1 로 monitor 모드로 패킷을 수집한다.
+그리고 decryption 해서 dum0 로 패킷을 보낸다(ethernet frame)
+그리고 기존의 wlan0 으로 managed 모드로 ethernet 통신으로 http response랑 fin 패킷을 발신한다.
+
+1. 일단 최초 연결의 패킷을 캡처
+2. 그리고 연결 될때 인터넷을 연결하면 어떤 패킷이 발생하는지
+3. 
+
+프로그램 로직
+
+1. wlan1 Ap_Mac 주소를 입력받는다.
+
+64:e5:99:dd:33:e4
+
+2. 찾아야할 패킷들
+
+기존에 등록이 되어있고, 재 연결 하는 경우
+(probe request 를 발신하여 연결을 수립하며, bssid만 있음)
+
+2-1. 
