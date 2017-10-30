@@ -25,6 +25,7 @@ struct taged_parameter *p_tag;
 struct ProbeRequest *pr;
 struct beacon_info_value nbiv;
 struct bssid_station_value bsv;
+struct ap_info *ai;
 
 using namespace std;
 
@@ -169,11 +170,12 @@ int main(int argc, char *argv[])
             }
             int i;
             system("clear");
-            cout<<"BSSID             CH\tESSID"<<endl;
+            cout<<"AP ADDR\t\t\tCH\tESSID"<<endl;
             for(iter = beacon_info.begin(); iter!=beacon_info.end(); advance(iter,1))
             {
-                for(i=0;i<6;i++)
-                    printf("%02x ",iter->first.mac_address[i]); //beacon info key(bssid)
+                for(i=0;i<5;i++)
+                    printf("%02x:",iter->first.mac_address[i]); //beacon info key(bssid)
+                printf("%02x\t",iter->first.mac_address[5]);
                 printf("%d\t",iter->second.ch);
                 for(i=0;i<iter->second.ESSID_Len;i++)
                     printf("%c",iter->second.ESSID[i]);
@@ -182,8 +184,9 @@ int main(int argc, char *argv[])
             cout<<"Connect Devices"<<endl;
             for(iter2 = station_info.begin(); iter2!=station_info.end(); advance(iter2,1))
             {
-                for(i=0;i<6;i++)
-                    printf("%02x ",iter2->first.mac_address[i]); //station key(station address)
+                for(i=0;i<5;i++)
+                    printf("%02x:",iter2->first.mac_address[i]); //station key(station address)
+                printf("%02x\t",iter2->first.mac_address[5]);
                 cout<<endl;
             }
         }

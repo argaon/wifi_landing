@@ -5,6 +5,12 @@
 using namespace std;
 #pragma pack(push,1)
 /********************Beacon info Key & value*******************/
+struct ap_info{
+    uint8_t ap_mac[6];
+    int ch;
+    uint8_t SSID[6];
+    int SSID_Len;
+};
 struct beacon_info_value{
     int ch;
     u_int8_t ESSID[33];
